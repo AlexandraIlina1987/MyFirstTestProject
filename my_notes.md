@@ -36,3 +36,15 @@ ng serve (scripts in package.json)
 - app.component.html;
 - app.component.scss;
 - app.component.spec.ts.
+
+## Angular Material
+
+https://v21.material.angular.dev/guide/getting-started
+
+## Bootstrap
+
+https://getbootstrap.com/docs/5.3/getting-started/download/
+https://getbootstrap.com/docs/5.3/utilities/flex/
+
+Вопросы
+imports: [NgClass, FormsModule, MatButtonModule], как понять когда какие модули нужны
