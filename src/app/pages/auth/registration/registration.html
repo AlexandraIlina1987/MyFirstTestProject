@@ -1,37 +1,110 @@
 <div class="d-flex flex-column mt-3 registration-wrap">
   <p>Your Login: {{ login }}</p>
-  <div>
+  <div class="d-flex flex-column">
     <input
+      required
+      minlength="3"
       placeholder="Login"
-      [ngClass]="{ 'input-error': login.length < 3 }"
       [(ngModel)]="login"
+      #loginInput="ngModel"
+      [ngClass]="{ 'input-error': loginInput.invalid && (loginInput.dirty || loginInput.touched) }"
     />
+    <div class="error-message">
+      @if (loginInput.invalid && (loginInput.dirty || loginInput.touched)) {
+        @if (loginInput.hasError('required')) {
+          Name is required.
+        }
+        @if (loginInput.hasError('minlength')) {
+          <div>Name must be at least 3 characters long.</div>
+        }
+      }
+    </div>
   </div>
-  <div>
-    <input type="email" placeholder="Email" [ngClass]="{ 'input-error': login.length < 3 }" />
+  <div class="d-flex flex-column">
+    <input
+      type="email"
+      placeholder="Email"
+      required
+      email
+      ngModel
+      #emailInput="ngModel"
+      [ngClass]="{
+        'input-error': emailInput.invalid && (emailInput.dirty || emailInput.touched),
+      }"
+    />
+
+    <div class="error-message">
+      @if (emailInput.invalid && (emailInput.dirty || emailInput.touched)) {
+        @if (emailInput.hasError('required')) {
+          <div>Email is required.</div>
+        }
+
+        @if (emailInput.hasError('email')) {
+          <div>Please enter a valid email.</div>
+        }
+      }
+    </div>
   </div>
-  <div>
+  <div class="d-flex flex-column">
     <input
       type="password"
       placeholder="Password"
-      [ngClass]="{ 'input-error': password.length < 6 }"
+      required
+      minlength="6"
+      #passwordInput="ngModel"
+      [ngClass]="{
+        'input-error': passwordInput.invalid && (passwordInput.dirty || passwordInput.touched),
+      }"
       [(ngModel)]="password"
     />
+    <div class="error-message">
+      @if (passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)) {
+        @if (passwordInput.hasError('required')) {
+          <div>Password is required</div>
+        }
+        @if (passwordInput.hasError('minlength')) {
+          Password must be at least 6 characters long.
+        }
+      }
+    </div>
   </div>
-  <div>
+  <div class="d-flex flex-column">
     <input
       type="password"
       placeholder="Password Repeat"
-      [ngClass]="{ 'input-error': passwordRepeat != password }"
+      required
       [(ngModel)]="passwordRepeat"
+      #passwordRepeatInput="ngModel"
+      [ngClass]="{
+        'input-error':
+          (passwordRepeatInput.invalid || passwordRepeat !== password) &&
+          (passwordRepeatInput.dirty || passwordRepeatInput.touched),
+      }"
     />
+    <div class="error-message">
+      @if (passwordRepeatInput.dirty || passwordRepeatInput.touched) {
+        @if (passwordRepeatInput.hasError('required')) {
+          <div>Password Repeat is required.</div>
+        }
+
+        @if (!passwordRepeatInput.hasError('required') && passwordRepeat !== password) {
+          <div>Passwords do not match.</div>
+        }
+      }
+    </div>
   </div>
 </div>
 <div class="mt-3 d-flex justify-content-center">
   <button
     matButton="filled"
     (click)="onAuth($event)"
-    [disabled]="login.length < 3 || password.length < 6 || password !== passwordRepeat"
+    [disabled]="
+      loginInput.invalid ||
+      emailInput.invalid ||
+      passwordInput.invalid ||
+      passwordRepeatInput.invalid ||
+      password !== passwordRepeat
+    "
   >
     Registration
   </button>

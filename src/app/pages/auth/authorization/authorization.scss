@@ -6,10 +6,17 @@
   & div {
     display: flex;
     justify-content: center;
-    margin-top: 1rem;
+    
   }
 
   & .input-error {
     border: 1px solid red;
   }
 }
+
+  .error-message {
+    min-height: 20px;
+    margin-bottom: 1rem;
+    font-size: 12px;
+    color: red;
+  }

@@ -16,9 +16,13 @@ export class Registration {
   email: string;
 
   onAuth(ev: Event): void {
-    if (this.login) {
-      localStorage.setItem('user', this.login);
+    const users: string[] = JSON.parse(localStorage.getItem('users') || '[]');
+    if (!users.includes(this.login)) {
+      users.push(this.login);
+      console.log(users);
+      localStorage.setItem('users', JSON.stringify(users));
+
+      //localStorage.setItem('user', this.login);
     }
-    console.log('ev', ev);
   }
 }

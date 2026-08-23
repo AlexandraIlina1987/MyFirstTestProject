@@ -14,9 +14,12 @@ export class Authorization {
   password: string = '';
 
   onAuth(ev: Event): void {
-    if (localStorage.getItem('user') === this.login) {
-      console.log('Success login');
+    const users: string[] = JSON.parse(localStorage.getItem('users') || '[]');
+    if (users.includes(this.login)) {
+      alert('Login successful!');
+      console.log('Login successful!');
     } else {
+      alert('Login failed');
       console.log('Login failed');
     }
   }
