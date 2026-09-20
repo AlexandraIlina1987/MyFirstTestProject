@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { User } from '../../services/user';
 
 @Component({
   selector: 'app-header',
@@ -6,4 +7,11 @@ import { Component } from '@angular/core';
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
-export class Header {}
+export class Header implements OnInit {
+  user = inject(User);
+  userLogin: string = '';
+
+  ngOnInit(): void {
+    this.userLogin = this.user.getUser()?.login || '';
+  }
+}

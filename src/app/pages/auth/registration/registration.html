@@ -26,7 +26,7 @@
       placeholder="Email"
       required
       email
-      ngModel
+      [(ngModel)]="email"
       #emailInput="ngModel"
       [ngClass]="{
         'input-error': emailInput.invalid && (emailInput.dirty || emailInput.touched),

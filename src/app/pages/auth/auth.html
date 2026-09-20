@@ -1,6 +1,14 @@
 <div class="d-flex justify-content-center align-items-center">
   <mat-tab-group dynamicHeight="true">
-    <mat-tab label="Authorization"> <app-authorization> </app-authorization></mat-tab>
-    <mat-tab label="Registration"> <app-registration></app-registration> </mat-tab>
+    <mat-tab label="Authorization">
+      <ng-template matTabContent>
+        <app-authorization></app-authorization>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Registration">
+      <ng-template matTabContent>
+        <app-registration></app-registration>
+      </ng-template>
+    </mat-tab>
   </mat-tab-group>
 </div>
