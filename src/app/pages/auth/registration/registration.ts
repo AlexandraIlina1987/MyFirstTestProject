@@ -2,9 +2,9 @@ import { NgClass } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { User } from '../../../services/user';
 import { RegistrationApi } from '../../../services/api/registration-api';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { IRegister } from '../../../models/auth';
 
 @Component({
   selector: 'app-registration',
@@ -22,25 +22,24 @@ export class Registration {
   private _snackBar = inject(MatSnackBar);
 
   onAuth(ev: Event): void {
-    this.userApiService
-      .register({
-        login: this.login,
-        email: this.email,
-        password: this.password,
-        //passwordRepeat: this.passwordRepeat,
-      })
-      .subscribe(
-        () => {
-          this._snackBar.open('Registration successful', 'Close', {
-            duration: 3000,
-          });
-        },
-        (error) => {
-          this._snackBar.open('Registration failed. User already exists', 'Close', {
-            duration: 3000,
-          });
-        },
-      );
-    // console.log('email', this.email);
+    const userData: IRegister = {
+      login: this.login,
+      email: this.email,
+      password: this.password,
+      //passwordRepeat: this.passwordRepeat,
+    };
+    console.log('userData', userData);
+    this.userApiService.register(userData).subscribe(
+      () => {
+        this._snackBar.open('Registration successful', 'Close', {
+          duration: 3000,
+        });
+      },
+      (error) => {
+        this._snackBar.open('Registration failed. User already exists', 'Close', {
+          duration: 3000,
+        });
+      },
+    );
   }
 }

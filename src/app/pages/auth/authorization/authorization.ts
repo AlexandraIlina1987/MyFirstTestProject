@@ -7,6 +7,7 @@ import { User } from '../../../services/user';
 import { UserApi } from '../../../services/api/user-api';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { IAuth, IAuthResponse } from '../../../models/auth';
 
 @Component({
   selector: 'app-authorization',
@@ -35,15 +36,22 @@ export class Authorization implements OnInit, OnDestroy {
   }
 
   onAuth(ev: Event): void {
-    this.userApiService.auth({ login: this.login, password: this.password }).subscribe(
+    const userData: IAuth = {
+      login: this.login,
+      password: this.password,
+    };
+    // console.log('userData', userData);
+    this.userApiService.auth(userData).subscribe(
       () => {
-        if (this.saveInStore) {
-          this.user.saveUserInStore({ login: this.login });
-          this.user.setUser({ login: this.login });
-          //localStorage.setItem('user', this.login);
-        } else {
-          this.user.setUser({ login: this.login });
-        }
+        // if (this.saveInStore) {
+        //   this.user.saveUserInStore({ login: this.login });
+        //   this.user.setUser({ login: this.login });
+        //   //localStorage.setItem('user', this.login);
+        // } else {
+        //   this.user.setUser({ login: this.login });
+        // }
+        this.user.saveUserInStore({ login: this.login });
+        this.user.setUser({ login: this.login });
         this.router.navigate(['/']);
       },
       () => {

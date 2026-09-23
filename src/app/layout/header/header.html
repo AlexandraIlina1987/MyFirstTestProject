@@ -1,4 +1,12 @@
 <div class="layout-header">
-  <div>header</div>
-  <div>{{ userLogin }}</div>
+  <div>
+    <div>
+      <app-menu [items]="menuItems"></app-menu>
+    </div>
+  </div>
+  <div class="time-wrap">{{ date() | date: 'HH:mm:ss EEEE' }}</div>
+  <div class="d-flex justify-content-center align-items-center gap-2">
+    <div>{{ userLogin }}</div>
+    <button matButton="filled" routerLink="/auth">Sign Out</button>
+  </div>
 </div>
