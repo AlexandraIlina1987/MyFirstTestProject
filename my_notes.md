@@ -46,5 +46,7 @@ https://v21.material.angular.dev/guide/getting-started
 https://getbootstrap.com/docs/5.3/getting-started/download/
 https://getbootstrap.com/docs/5.3/utilities/flex/
 
-Вопросы
-imports: [NgClass, FormsModule, MatButtonModule], как понять когда какие модули нужны
+запуск сервера: npm run runExpress
+запуск фронт: npm run start
+
+вопрос на урок - например в layout.html (после <router-outlet></router-outlet> ) пишу <app-...> и не получается найти нужный tours компонет, не показывается дропдаун

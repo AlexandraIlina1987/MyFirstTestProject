@@ -3,7 +3,7 @@ export interface IAuth {
   password: string;
 }
 
-export interface IAuthResponse extends IAuth {}
+export interface IAuthResponse extends IRegister {}
 
 export interface IRegister extends IAuth {
   //passwordRepeat: string;
