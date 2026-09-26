@@ -1,5 +1,5 @@
 <div class="d-flex flex-wrap">
-  @for (item of tours(); track item.id) {
+  @for (item of tours; track item.id) {
     <mat-card class="tour-item">
       <mat-card-title class="tour-type">{{ item.type ? item.type : 'single' }} </mat-card-title>
       <mat-card-content>
@@ -7,7 +7,7 @@
         <p>{{ item.description }}</p>
         <img src="/img/{{ item.img }}" alt="img" />
         <mat-card-actions>
-          <button matButton>Details</button>
+          <button matButton (click)="goToTour(item)">Details</button>
         </mat-card-actions>
       </mat-card-content>
     </mat-card>
