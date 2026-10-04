@@ -1,9 +1,15 @@
-<div class="d-flex flex-wrap">
-  @for (item of tours; track item.id) {
-    <mat-card class="tour-item">
+<div
+  class="d-flex flex-wrap tour-wrap"
+  appHighlightActive
+  selector=".tour-item"
+  [initFirst]="true"
+  (onEnter)="onEnter($event)"
+>
+  @for (item of tours; track item.id; let i = $index) {
+    <mat-card class="tour-item" [attr.data-tour-id]="item.id" [attr.index]="i">
       <mat-card-title class="tour-type">{{ item.type ? item.type : 'single' }} </mat-card-title>
       <mat-card-content>
-        <p>{{ item.date }}</p>
+        <p>{{ item.date | date: 'dd.MM.yyyy' }}</p>
         <p>{{ item.description }}</p>
         <img src="/img/{{ item.img }}" alt="img" />
         <mat-card-actions>
