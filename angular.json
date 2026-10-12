@@ -8,6 +8,7 @@
   "projects": {
     "MyFirstTestProject": {
       "projectType": "application",
+      "i18n": { "sourceLocale": "ru" },
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
@@ -32,6 +33,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/app/shared/mocks/",
+                "output": "/"
               }
             ],
             "styles": [

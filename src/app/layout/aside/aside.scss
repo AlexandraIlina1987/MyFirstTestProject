@@ -1,4 +1,4 @@
-@use "variables" ; 
+@use "variables";
 
 :host {
   min-width: 300px;
@@ -7,4 +7,23 @@
 
 .aside {
   border-left: 1px solid var(--border-color);
+}
+
+.aside-placeholder {
+  padding: 16px;
+  color: #6c757d;
+  background-color: #f7f7f8;
+  border-radius: 8px;
+}
+
+.aside-title {
+  margin-bottom: 6px;
+  color: #556189;
+  font-weight: 500;
+}
+
+p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
 }

@@ -1,0 +1,16 @@
+:host {
+  display: block;
+  margin-left: 20px;
+  a {
+    margin-right: 15px;
+    text-decoration: none;
+    color:hsl(37, 100%, 85%);
+    font-weight: 500;
+    font-size: 20px;
+
+    &:hover {
+      color: var(--mat-sys-primary);
+      transition: all 0.3s ease;
+    }
+  }
+}

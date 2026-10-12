@@ -15,7 +15,7 @@ export class User {
   }
 
   getUser(): IUser {
-    return this.user;
+    return this.user || JSON.parse(localStorage.getItem('user') ?? '');
   }
   setUser(user: IUser): void {
     this.user = user;
