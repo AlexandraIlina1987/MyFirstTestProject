@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { Auth } from './pages/auth/auth';
 import { Layout } from './layout/layout';
 import { Tours } from '././pages/tours/tours';
+import { Order } from './pages/order/order';
 
 export const routes: Routes = [
   {
@@ -17,6 +18,14 @@ export const routes: Routes = [
         path: 'settings',
         loadComponent: () => import('./pages/settings/settings').then((c) => c.Settings),
       },
+      {
+        path: 'tour/:id',
+        loadComponent: () => import('./pages/tour-item/tour-item').then((c) => c.TourItem),
+      },
+      {
+        path: 'tour/:tourId/order',
+        loadComponent: () => import('./pages/order/order').then((c) => c.Order),
+      },
     ],
   },
 
@@ -24,5 +33,9 @@ export const routes: Routes = [
     path: 'auth',
     //component: Auth, // eager loading - моментально все файлы сразу
     loadComponent: () => import('./pages/auth/auth').then((c) => c.Auth), // lazy loading - при первом заходе на страницу
+  },
+  {
+    path: '**',
+    component: Tours,
   },
 ];

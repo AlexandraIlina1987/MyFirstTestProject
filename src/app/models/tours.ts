@@ -13,3 +13,10 @@ export interface ITour {
 export interface IToursResponse {
   tours: ITour[];
 }
+
+export interface IOrder {
+  tourId: string;
+  lastName: string;
+  firstName: string;
+  email: string;
+}

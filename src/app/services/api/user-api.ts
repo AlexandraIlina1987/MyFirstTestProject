@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { API } from '../../shared/api';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { delay, finalize, Observable } from 'rxjs';
 import { IAuth, IAuthResponse } from '../../models/auth';
+import { Loader } from '../loader';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +11,15 @@ import { IAuth, IAuthResponse } from '../../models/auth';
 export class UserApi {
   private api = API;
   private http = inject(HttpClient);
+  private loaderService = inject(Loader);
 
   auth(body: IAuth): Observable<IAuthResponse> {
-    return this.http.post<IAuthResponse>(this.api.auth, body);
+    this.loaderService.setLoader(true);
+    return this.http.post<IAuthResponse>(this.api.auth, body).pipe(
+      delay(1000),
+      finalize(() => {
+        this.loaderService.setLoader(false);
+      }),
+    );
   }
 }
