@@ -1,4 +1,4 @@
-import { NgClass } from '@angular/common';
+import { NgClass, AsyncPipe } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -8,10 +8,21 @@ import { UserApi } from '../../../services/api/user-api';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { IAuth, IAuthResponse } from '../../../models/auth';
+import { Loader as LoaderService } from '../../../services/loader';
+import { Loader } from '../../../shared/components/loader/loader';
 
 @Component({
   selector: 'app-authorization',
-  imports: [NgClass, FormsModule, MatButtonModule, MatCheckboxModule, MatSnackBarModule],
+  imports: [
+    NgClass,
+    FormsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatSnackBarModule,
+    Loader,
+    Loader,
+    AsyncPipe,
+  ],
   templateUrl: './authorization.html',
   styleUrl: './authorization.scss',
 })
@@ -23,6 +34,9 @@ export class Authorization implements OnInit, OnDestroy {
   private userApiService = inject(UserApi); // способ подключения сервиса
   private _snackBar = inject(MatSnackBar);
   private router = inject(Router); // класс router является сервисом и может быть внедрен в компонент
+
+  private LoaderService = inject(LoaderService);
+  loaderStatus$ = this.LoaderService.loader$;
 
   constructor(private user2: User) {
     console.log('Auth constructor init');

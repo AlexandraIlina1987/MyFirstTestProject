@@ -1,5 +1,13 @@
 :host {
   display: block;
+   height: 100%;
+}
+
+.tours-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
 }
 
 .tour-item {
@@ -35,3 +43,14 @@
     border: 1px solid red;
   }
 }
+
+.search-container {
+  flex-shrink: 0;
+}
+.tour-wrap {
+  flex: 1;
+  min-height: 0;
+  overflow-y: scroll;
+  align-content: flex-start;
+}
+

@@ -36,20 +36,21 @@ export class HighlightActive implements AfterViewInit, OnInit, OnChanges {
   ngOnInit(): void {}
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.items = this.el
-        ? Array.from((this.el.nativeElement as HTMLElement).querySelectorAll(this.selector))
-        : [];
-
-      // if (this.sort) {
-      //   this.items.sort(this.sort);
-      // }
-
-      if (this.initFirst && this.items?.length) {
-        this.changeIndex(0);
-      }
+      this.initItems();
 
       //console.log('items', this.items);
     }, 1000);
+  }
+
+  initItems() {
+    this.items = this.el
+      ? Array.from((this.el.nativeElement as HTMLElement).querySelectorAll(this.selector))
+      : [];
+
+    if (this.initFirst && this.items?.length) {
+      this.items.forEach((item) => item.classList.remove('active'));
+      this.changeIndex(0);
+    }
   }
   ngOnChanges(changes: SimpleChanges): void {
     console.log('changes', changes);
