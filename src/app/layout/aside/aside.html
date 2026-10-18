@@ -1,6 +1,34 @@
 <aside class="aside h-100 p-3">
-  <div class="aside-placeholder">
-    <div class="aside-title">Travel tips</div>
-    <p>Recommendations and useful information will appear here.</p>
-  </div>
+  <mat-form-field>
+    <mat-label>Choose tour type</mat-label>
+    <!--
+    [(value)]="selectedType" - выбранное значение хранится в переменной selectedType
+    (selectionChange)="changeTourType($event)" - когда пользователь выбирает другой вариант, вызывается функция
+    $event — это информация о событии выбора, оттуда можно взять выбранное значение
+    @for (item of tourTypes; track item.value) - перебираем массив tourTypes и создаем опции-->
+
+    <mat-select [(value)]="selectedType" (selectionChange)="changeTourType($event.value)">
+      @for (item of tourTypes; track item.value) {
+        <mat-option [value]="item.value">
+          {{ item.label }}
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>DD/MM/YYYY</mat-label>
+    <input
+      matInput
+      [matDatepicker]="datepicker"
+      [value]="selectedDate"
+      (dateChange)="changeDate($event.value)"
+    />
+    <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+    <mat-datepicker #datepicker>
+      <mat-datepicker-actions>
+        <button matButton (click)="clearDate()">Clear</button>
+        <button matButton="elevated" matDatepickerApply>Apply</button>
+      </mat-datepicker-actions>
+    </mat-datepicker>
+  </mat-form-field>
 </aside>

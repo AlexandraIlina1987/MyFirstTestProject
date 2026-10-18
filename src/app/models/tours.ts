@@ -20,3 +20,10 @@ export interface IOrder {
   firstName: string;
   email: string;
 }
+
+export interface ITourTypeSelect {
+  label?: string;
+  value?: string;
+  date?: Date;
+}
+export type ITourTypes = 'all' | 'single' | 'multi';
