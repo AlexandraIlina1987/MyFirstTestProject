@@ -1,7 +1,10 @@
 <div class="tours-page">
   <div class="search-container">
     <mat-form-field>
-      <input (input)="searchTours($event)" matInput placeholder="search..." />
+      <!-- старый (input)="searchTours($event)" запускает поиск немедленно -->
+      <!--<input (input)="searchTours($event)" matInput placeholder="search..." /> -->
+      <!--#searchInput — это переменная шаблона, которая ссылается на конкретный HTML-элемент-->
+      <input #searchInput matInput placeholder="Search tours..." />
     </mat-form-field>
   </div>
 
