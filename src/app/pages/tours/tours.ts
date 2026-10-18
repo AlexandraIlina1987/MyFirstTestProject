@@ -146,6 +146,8 @@ export class Tours implements OnInit, AfterViewInit, OnDestroy {
     const search = this.searchValue.trim().toLowerCase();
 
     const date = this.tourDateFilter;
+    // console.log('calendar', date);
+
     const selectedDate = date
       ? [
           date.getFullYear(),
@@ -161,8 +163,15 @@ export class Tours implements OnInit, AfterViewInit, OnDestroy {
 
       const matchesSearch =
         tour.name.toLowerCase().includes(search) || tour.description.toLowerCase().includes(search);
-
-      const matchesDate = selectedDate === null || tour.date === selectedDate;
+      const tourDate = tour?.date ? new Date(tour.date).setHours(0, 0, 0) : null;
+      const calendarDate = this.tourDateFilter
+        ? new Date(this.tourDateFilter).setHours(0, 0, 0)
+        : null;
+      //const matchesDate = selectedDate === null || tour.date === selectedDate;
+      const matchesDate = selectedDate === null || tourDate === calendarDate;
+      // if (tour.date) {
+      //   console.log(new Date(tour.date));
+      // }
 
       return matchesType && matchesSearch && matchesDate;
     });
